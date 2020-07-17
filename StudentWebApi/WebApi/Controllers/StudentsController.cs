@@ -22,6 +22,7 @@ namespace WebApi.Controllers
             context.Database.EnsureCreated();
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetAllStudents()
         {
             var student = await context.Students.ToArrayAsync();
