@@ -34,5 +34,18 @@ namespace WebApi.Controllers
 
             return Ok(student);
         }
+
+        [HttpGet, Route("{id}")]
+        public async Task<IActionResult> GetStudent(int id)
+        {
+            var student = await context.Students.FindAsync(id);
+
+            if(student == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(student);
+        }
     }
 }
