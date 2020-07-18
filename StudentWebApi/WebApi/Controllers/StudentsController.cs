@@ -47,5 +47,14 @@ namespace WebApi.Controllers
 
             return Ok(student);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Student>> AddStudent([FromBody]Student student)
+        {
+            context.Students.Add(student);
+            await context.SaveChangesAsync();
+
+            return CreatedAtAction("GetStudent", new { id = student.StudentId }, student);
+        }
     }
 }
