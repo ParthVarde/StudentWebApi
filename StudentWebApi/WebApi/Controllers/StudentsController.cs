@@ -84,5 +84,21 @@ namespace WebApi.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Student>> DeleteStudent(int id)
+        {
+            var student = await context.Students.FindAsync(id);
+
+            if(student == null)
+            {
+                return NotFound();
+            }
+
+            context.Students.Remove(student);
+            await context.SaveChangesAsync();
+
+            return Ok(student);
+        }
     }
 }
